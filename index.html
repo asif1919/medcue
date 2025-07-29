@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDCUE: Scan RX & Manage Meds - Your AI Health Assistant</title>
+    <meta name="description"
+        content="MEDCUE: Scan prescriptions, manage meds, get local prices, and organize family health records. Your AI Health Assistant built for Everyone.">
+    <meta name="keywords"
+        content="MEDCUE, health app, medicine management, prescription scanner, AI health, Bangladesh, pill reminder, family health, medicine prices">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://placehold.co/32x32/2C3E50/FFFFFF?text=MC" type="image/x-icon">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Custom styles for animations and font */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #1E293B;
+        }
+
+        /* Ensure sections have proper scroll margin for sticky header */
+        section[id] {
+            scroll-margin-top: 100px;
+            /* Adjust based on header height */
+        }
+
+        /* Animation for elements on scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced Hero Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+            }
+
+            100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            }
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+
+            100% {
+                background-position: calc(200px + 100%) 0;
+            }
+        }
+
+        .phone-mockup {
+            animation: float 6s ease-in-out infinite, pulse-glow 3s ease-in-out infinite;
+        }
+
+        .hero-content {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-visual {
+            animation: slideInRight 1s ease-out 0.3s both;
+        }
+
+        .hero-buttons {
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-tagline {
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-shape:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-shape:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-shape:nth-child(3) {
+            bottom: 30%;
+            left: 5%;
+            animation-delay: 4s;
+        }
+
+        .floating-shape:nth-child(4) {
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 6s;
+        }
+
+        /* Enhanced button animations */
+        .download-btn {
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(90deg, #007ac2, #009ee0);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 122, 194, 0.3);
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .coming-soon-btn {
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .coming-soon-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(156, 163, 175, 0.3);
+        }
+
+        /* Gradient text effect */
+        .gradient-text {
+            background: linear-gradient(135deg, #007ac2 0%, #009ee0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Enhanced hero background */
+        .hero-bg {
+            background: linear-gradient(135deg, #e6f4fb 0%, #cceafd 100%);
+            position: relative;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 122, 194, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(0, 158, 224, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Modern section backgrounds */
+        .section-bg-light {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .section-bg-white {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+        }
+
+        /* Enhanced feature cards */
+        .feature-card {
+            transition: all 0.4s ease-in-out;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3B82F6, #1E40AF);
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+            border-color: #3B82F6;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, #007ac2, #009ee0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Step cards */
+        .step-card {
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #3B82F6, #1E40AF);
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Elderly section cards */
+        .elderly-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .elderly-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .elderly-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.1);
+        }
+
+        .elderly-card:hover::before {
+            opacity: 1;
+        }
+
+        .elderly-icon {
+            background: linear-gradient(135deg, #007ac2, #009ee0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Blog cards */
+        .blog-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3B82F6, #1E40AF);
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.1);
+        }
+
+        .blog-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Screenshot carousel */
+        .screenshot-carousel {
+            scrollbar-width: thin;
+            scrollbar-color: #3B82F6 #e2e8f0;
+        }
+
+        .screenshot-carousel::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .screenshot-carousel::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .screenshot-carousel::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, #007ac2, #009ee0);
+            border-radius: 10px;
+        }
+
+        .screenshot-carousel::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(90deg, #009ee0, #007ac2);
+        }
+
+        /* Testimonial card */
+        .testimonial-card {
+            background: linear-gradient(135deg, #e6f4fb 0%, #cceafd 100%);
+            border: 1px solid #b3e0f7;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #3B82F6;
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        /* Language toggle switch styling */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e1;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background: linear-gradient(90deg, #007ac2, #009ee0);
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #3B82F6;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* High contrast for elderly readability */
+        .text-high-contrast {
+            color: #1E293B;
+        }
+
+        .bg-high-contrast {
+            background-color: #FFFFFF;
+        }
+
+        .border-high-contrast {
+            border-color: #1E293B;
+        }
+
+        /* Loading animation */
+        .loading-shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200px 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        /* Floating notification */
+        .floating-notification {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        /* Price tag */
+        .price-tag {
+            background: linear-gradient(135deg, #007ac2, #009ee0);
+            color: white;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0, 122, 194, 0.3);
+        }
+    </style>
+</head>
+
+<body class="text-high-contrast bg-high-contrast">
+
+    <!-- Enhanced Header / Navigation -->
+    <header class="bg-white shadow-sm py-4 px-6 md:px-12 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <!-- Logo and Brand -->
+            <div class="flex items-center space-x-3">
+                <img src="image/logo.png" alt="MEDCUE Logo" class="h-10 w-auto">
+                <div class="hidden sm:block">
+                    <span class="text-xl font-bold text-deep-blue" data-lang-key="appName">MEDCUE</span>
+                    <p class="text-xs text-gray-500" data-lang-key="appTagline">AI Health Assistant</p>
+                </div>
+            </div>
+
+            <!-- Navigation Menu (Desktop) -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#features"
+                    class="nav-link text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300"
+                    data-lang-key="navFeatures">Features</a>
+                <a href="#how-it-works"
+                    class="nav-link text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300"
+                    data-lang-key="navHowItWorks">How It Works</a>
+                <a href="#testimonials"
+                    class="nav-link text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300"
+                    data-lang-key="navTestimonials">Reviews</a>
+                <a href="#about"
+                    class="nav-link text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300"
+                    data-lang-key="navAbout">About</a>
+                <a href="#contact"
+                    class="nav-link text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300"
+                    data-lang-key="navContact">Contact</a>
+            </nav>
+
+            <!-- Right Side Actions -->
+            <div class="flex items-center space-x-4">
+                <!-- Download Button (Desktop) -->
+                <a href="https://play.google.com/store/apps/details?id=com.atechhouse.medcue&hl=bn" target="_blank"
+                    class="hidden lg:flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-300">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                    </svg>
+                    <span class="text-sm" data-lang-key="navDownload">Download</span>
+                </a>
+
+                <!-- Language Toggle -->
+                <div class="flex items-center space-x-2">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="languageToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span id="langLabel" class="text-sm font-medium text-deep-blue hidden sm:block">English</span>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+                    id="mobileMenuBtn">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="md:hidden hidden" id="mobileMenu">
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <nav class="flex flex-col space-y-3">
+                    <a href="#features"
+                        class="nav-link text-gray-700 hover:text-blue-600 font-medium px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                        data-lang-key="navFeatures">Features</a>
+                    <a href="#how-it-works"
+                        class="nav-link text-gray-700 hover:text-blue-600 font-medium px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                        data-lang-key="navHowItWorks">How It Works</a>
+                    <a href="#testimonials"
+                        class="nav-link text-gray-700 hover:text-blue-600 font-medium px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                        data-lang-key="navTestimonials">Reviews</a>
+                    <a href="#about"
+                        class="nav-link text-gray-700 hover:text-blue-600 font-medium px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                        data-lang-key="navAbout">About</a>
+                    <a href="#contact"
+                        class="nav-link text-gray-700 hover:text-blue-600 font-medium px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                        data-lang-key="navContact">Contact</a>
+                    <div class="px-4 py-2">
+                        <a href="https://play.google.com/store/apps/details?id=com.atechhouse.medcue&hl=bn"
+                            target="_blank"
+                            class="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-300">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                            </svg>
+                            <span data-lang-key="navDownload">Download App</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Enhanced Hero Section -->
+        <section id="hero"
+            class="hero-bg py-20 md:py-32 px-6 md:px-12 flex flex-col lg:flex-row items-center justify-center text-center lg:text-left min-h-screen relative overflow-hidden">
+            <!-- Floating Background Shapes -->
+            <div class="floating-shapes">
+                <div class="floating-shape">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#27AE60" stroke-width="1">
+                        <circle cx="12" cy="12" r="10" />
+                    </svg>
+                </div>
+                <div class="floating-shape">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2C3E50" stroke-width="1">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    </svg>
+                </div>
+                <div class="floating-shape">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#27AE60" stroke-width="1">
+                        <polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5" />
+                    </svg>
+                </div>
+                <div class="floating-shape">
+                    <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#2C3E50" stroke-width="1">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Left Content with Added Padding -->
+            <div class="flex-1 pl-6 lg:pl-16 lg:w-5/12 mb-12 lg:mb-0 lg:pr-16 hero-content relative z-10">
+                <!-- Badge -->
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6 animate-on-scroll">
+                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
+                    <span data-lang-key="newFeature">✨ New AI-Powered Features</span>
+                </div>
+
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 hero-title">
+                    <span class="gradient-text" data-lang-key="heroTitle">MEDCUE</span>
+                </h1>
+
+                <p class="text-xl md:text-2xl text-gray-600 mb-10 hero-tagline leading-relaxed"
+                    data-lang-key="heroTagline">
+                    Your AI Health Assistant – Simplifying medication management for everyone.
+                </p>
+
+                <!-- Key Benefits -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 text-left">
+                    <div class="flex items-center space-x-3 text-gray-700">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium" data-lang-key="benefit1">AI-Powered Scanning</span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-gray-700">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium" data-lang-key="benefit2">Smart Reminders</span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-gray-700">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium" data-lang-key="benefit3">Local Prices</span>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6 hero-buttons">
+                    <!-- Google Play Badge -->
+                    <a href="https://play.google.com/store/apps/details?id=com.atechhouse.medcue&hl=bn" target="_blank"
+                        class="transform hover:scale-105 transition duration-200 flex-shrink-0">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                            alt="Get it on Google Play" class="h-20 w-auto" />
+                    </a>
+
+                    <!-- App Store Badge (Coming Soon) -->
+                    <div class="flex flex-col items-center opacity-50 cursor-not-allowed pointer-events-none">
+                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                            alt="Download on the App Store" class="h-16 w-auto" />
+                        <span class="mt-2 text-sm text-gray-600 font-medium">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+
+           <!-- Right Phone Mockup -->
+<div class="flex-1 px-4 lg:px-0 lg:w-7/12 flex justify-center items-center hero-visual relative z-10">
+  <div class="relative">
+    <!-- Main Phone -->
+    <div
+      class="w-60 md:w-64 lg:w-72 h-[540px] flex items-center justify-center rounded-3xl shadow-2xl border-4 border-deep-blue"
+      style="background:#007ac2;"
+    >
+      <img src="image/logo.png" alt="MEDCUE Logo" class="h-28 w-28 object-contain" />
+    </div>
+
+    <!-- Floating Notification -->
+    <div
+      class="absolute -top-3 -right-3 bg-blue-500 text-white px-3 py-2 rounded-lg shadow-lg floating-notification"
+    >
+      <div class="flex items-center space-x-2">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
+          />
+        </svg>
+        <span class="text-xs font-medium">Time for medicine!</span>
+      </div>
+    </div>
+
+    <!-- Floating Price Tag -->
+    <div class="absolute -bottom-3 -left-3 price-tag">
+      <div class="text-center">
+        <div class="text-xs opacity-90">Price</div>
+        <div class="font-bold">FREE</div>
+      </div>
+    </div>
+
+    <!-- Secondary Floating Elements -->
+    <div
+      class="absolute top-8 -left-6 bg-white p-3 rounded-xl shadow-lg border border-gray-200 animate-on-scroll"
+      style="animation-delay: 0.5s;"
+    >
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+          <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-xs font-medium text-deep-blue">AI Scan</div>
+          <div class="text-xs text-gray-500">99% Accurate</div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="absolute bottom-16 -right-6 bg-white p-3 rounded-xl shadow-lg border border-gray-200 animate-on-scroll"
+      style="animation-delay: 1s;"
+    >
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+          <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+            />
+          </svg>
+        </div>
+        <div>
+          <div class="text-xs font-medium text-deep-blue">Family</div>
+          <div class="text-xs text-gray-500">5 Members</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </section>
+
+        <!-- 2. Enhanced Features Grid -->
+        <section id="features" class="section-bg-light py-20 md:py-32 px-6 md:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-on-scroll"
+                        data-lang-key="featuresTitle">
+                        Powerful Features at Your Fingertips
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll"
+                        data-lang-key="featuresSubtitle">
+                        Discover how MEDCUE revolutionizes medication management with cutting-edge AI technology
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature Card 1: AI RX Scanner -->
+                    <div class="feature-card p-8 rounded-2xl text-center animate-on-scroll">
+                        <div class="feature-icon text-6xl mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="mx-auto">
+                                <path
+                                    d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                                <circle cx="12" cy="13" r="3" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="feature1Title">AI RX Scanner
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed" data-lang-key="feature1Desc">Scan handwritten
+                            prescriptions with ease and accuracy using advanced AI technology.</p>
+                    </div>
+
+                    <!-- Feature Card 2: Pill Reminder -->
+                    <div class="feature-card p-8 rounded-2xl text-center animate-on-scroll">
+                        <div class="feature-icon text-6xl mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="mx-auto">
+                                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="feature2Title">Smart Pill
+                            Reminder</h3>
+                        <p class="text-gray-600 leading-relaxed" data-lang-key="feature2Desc">Never miss a dose with
+                            intelligent, customizable reminders and notifications.</p>
+                    </div>
+
+                    <!-- Feature Card 3: Offline Support -->
+                    <div class="feature-card p-8 rounded-2xl text-center animate-on-scroll">
+                        <div class="feature-icon text-6xl mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="mx-auto">
+                                <path d="M12 20h.01" />
+                                <path d="M2 8.82a15 15 0 0 1 4.7-3.65" />
+                                <path d="M17.3 5.17A15 15 0 0 1 22 8.82" />
+                                <line x1="2" y1="2" x2="22" y2="22" />
+                                <path d="M8.5 12.118a5.29 5.29 0 0 1 2.887-2.887" />
+                                <path d="M15.5 12.118a5.29 5.29 0 0 0-2.887-2.887" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="feature3Title">Offline Support
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed" data-lang-key="feature3Desc">Access your medication
+                            information even without internet connection.</p>
+                    </div>
+
+                    <!-- Feature Card 4: Bangladesh Medicine Prices -->
+                    <div class="feature-card p-8 rounded-2xl text-center animate-on-scroll">
+                        <div class="feature-icon text-6xl mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="mx-auto">
+                                <line x1="12" y1="1" x2="12" y2="23" />
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="feature4Title">Local Medicine
+                            Prices</h3>
+                        <p class="text-gray-600 leading-relaxed" data-lang-key="feature4Desc">Get up-to-date local cost
+                            information for medicines across Bangladesh.</p>
+                    </div>
+
+                    <!-- Feature Card 5: Family Health Organizer -->
+                    <div class="feature-card p-8 rounded-2xl text-center animate-on-scroll">
+                        <div class="feature-icon text-6xl mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="mx-auto">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="feature5Title">Family Health
+                            Organizer</h3>
+                        <p class="text-gray-600 leading-relaxed" data-lang-key="feature5Desc">Effortlessly manage health
+                            records for your entire family in one place.</p>
+                    </div>
+
+                    <!-- Feature Card 6: AI Medicine Info -->
+                    <div class="feature-card p-8 rounded-2xl text-center animate-on-scroll">
+                        <div class="feature-icon text-6xl mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="mx-auto">
+                                <path
+                                    d="M12 2a3 3 0 0 0-3 3v.1a3 3 0 0 0-.2 5.5l.2.4V12a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2v-.1a3 3 0 0 0 .2-5.5l-.2-.4V5a3 3 0 0 0-3-3z" />
+                                <path d="M16 16c0 1.1.9 2 2 2h1a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="feature6Title">AI Medicine Info
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed" data-lang-key="feature6Desc">Tap any medicine to get
+                            comprehensive information about usage, side effects, and precautions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Enhanced How It Works Section -->
+        <section id="how-it-works" class="section-bg-white py-20 md:py-32 px-6 md:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-on-scroll"
+                        data-lang-key="howItWorksTitle">
+                        How MEDCUE Works
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll"
+                        data-lang-key="howItWorksSubtitle">
+                        Simple steps to transform your medication management experience
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Step 1 -->
+                    <div class="step-card flex flex-col items-center text-center animate-on-scroll">
+                        <div class="step-number">1</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-lang-key="step1Title">Scan Your
+                            Prescription</h3>
+                        <p class="text-gray-600 leading-relaxed" data-lang-key="step1Desc">Simply take a photo of your
+                            handwritten or printed prescription with our AI scanner.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card flex flex-col items-center text-center animate-on-scroll">
+                        <div class="step-number">2</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-lang-key="step2Title">AI Detects & Sorts
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed" data-lang-key="step2Desc">Our advanced AI accurately
+                            identifies and organizes your medications automatically.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card flex flex-col items-center text-center animate-on-scroll">
+                        <div class="step-number">3</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-lang-key="step3Title">Get Smart Reminders
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed" data-lang-key="step3Desc">Receive intelligent alerts
+                            for Morning, Afternoon, and Night doses on time.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-card flex flex-col items-center text-center animate-on-scroll">
+                        <div class="step-number">4</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4" data-lang-key="step4Title">Stay Informed</h3>
+                        <p class="text-gray-600 leading-relaxed" data-lang-key="step4Desc">Tap any medicine to access
+                            comprehensive information instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Enhanced Elderly Users Section -->
+        <section class="section-bg-light py-20 md:py-32 px-6 md:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-on-scroll"
+                        data-lang-key="elderlyTitle">
+                        Designed for Our Elderly Loved Ones
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll"
+                        data-lang-key="elderlySubtitle">
+                        Accessible design that makes medication management simple for everyone
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="elderly-card p-8 rounded-2xl text-center animate-on-scroll">
+                        <div class="elderly-icon text-6xl mb-6">
+                            <!-- Icon: Tap -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="mx-auto">
+                                <path
+                                    d="M12 2a3 3 0 0 0-3 3v.1a3 3 0 0 0-.2 5.5l.2.4V12a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2v-.1a3 3 0 0 0 .2-5.5l-.2-.4V5a3 3 0 0 0-3-3z" />
+                                <path d="M16 16c0 1.1.9 2 2 2h1a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="elderlyFeature1Title">One Tap
+                            Scan</h3>
+                        <p class="text-lg text-gray-600 leading-relaxed" data-lang-key="elderlyFeature1Desc">Effortless
+                            prescription scanning with a single tap - no complex steps required.</p>
+                    </div>
+
+                    <div class="elderly-card p-8 rounded-2xl text-center animate-on-scroll">
+                        <div class="elderly-icon text-6xl mb-6">
+                            <!-- Icon: Voice -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="mx-auto">
+                                <path d="M12 1a9 9 0 0 0-9 9v3a9 9 0 0 0 9 9 9 9 0 0 0 9-9v-3a9 9 0 0 0-9-9z" />
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                                <line x1="9" y1="9" x2="9.01" y2="9" />
+                                <line x1="15" y1="9" x2="15.01" y2="9" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="elderlyFeature2Title">
+                            Voice-Guided Alerts</h3>
+                        <p class="text-lg text-gray-600 leading-relaxed" data-lang-key="elderlyFeature2Desc">Clear audio
+                            reminders for medication doses that are easy to understand.</p>
+                    </div>
+
+                    <div class="elderly-card p-8 rounded-2xl text-center animate-on-scroll">
+                        <div class="elderly-icon text-6xl mb-6">
+                            <!-- Icon: Layout -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="mx-auto">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="elderlyFeature3Title">
+                            Simplified Layout</h3>
+                        <p class="text-lg text-gray-600 leading-relaxed" data-lang-key="elderlyFeature3Desc">Large
+                            buttons and high-contrast design for easy navigation and readability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Enhanced Dose Timeline Section -->
+        <section class="section-bg-white py-20 md:py-32 px-6 md:px-12">
+            <div
+                class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center text-center lg:text-left">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-16 animate-on-scroll">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6" data-lang-key="doseTimelineTitle">
+                        Effortless Dose Management
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed" data-lang-key="doseTimelineDesc">
+                        No more guessing from the prescription. MEDCUE automatically separates your doses into clear,
+                        easy-to-follow timelines. Just open the app and take your dose.
+                    </p>
+                    <div class="space-y-6 text-left">
+                        <div class="flex items-center space-x-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                            <span class="text-4xl">🌅</span>
+                            <div>
+                                <div class="text-xl font-bold text-gray-800" data-lang-key="doseMorning">Morning</div>
+                                <div class="text-gray-600">Start your day right</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                            <span class="text-4xl">🌇</span>
+                            <div>
+                                <div class="text-xl font-bold text-gray-800" data-lang-key="doseAfternoon">Afternoon
+                                </div>
+                                <div class="text-gray-600">Stay on track</div>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center space-x-4 p-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl border border-blue-600">
+                            <span class="text-4xl">🌃</span>
+                            <div>
+                                <div class="text-xl font-bold" data-lang-key="doseNight">Night</div>
+                                <div class="text-blue-100">End your day properly</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center items-center animate-on-scroll">
+                    <!-- Enhanced Dose Timeline UI Mockup -->
+                    <div class="relative">
+                        <img src="image/1.jpg" alt="MEDCUE Dose Timeline UI"
+                            class="w-64 md:w-80 rounded-3xl shadow-2xl border-4 border-black" />
+
+
+                        <!-- Floating notification -->
+                        <div
+                            class="absolute -top-4 -right-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg floating-notification">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                                </svg>
+                                <span class="text-sm font-medium">Time for morning dose!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 6. Enhanced Screenshot Carousel -->
+        <section class="section-bg-light py-20 md:py-32 px-6 md:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-on-scroll"
+                        data-lang-key="screenshotsTitle">
+                        A Glimpse Inside MEDCUE
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll"
+                        data-lang-key="screenshotsSubtitle">
+                        Explore the intuitive interface designed for seamless medication management
+                    </p>
+                </div>
+
+                <div
+                    class="screenshot-carousel flex overflow-x-auto snap-x snap-mandatory pb-6 space-x-8 lg:space-x-10 max-w-6xl mx-auto rounded-2xl shadow-inner p-6 bg-white">
+
+                    <!-- Screenshot 2: Smart Reminders -->
+                    <div class="flex-shrink-0 snap-center animate-on-scroll">
+                        <div
+                            class="relative w-60 h-[520px] bg-gray-900 rounded-3xl shadow-2xl border-4 border-gray-800 overflow-hidden mx-auto flex items-center justify-center">
+                            <div
+                                class="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-5 bg-gray-900 rounded-b-xl z-10">
+                            </div>
+                            <img src="image/1.jpg" alt="MEDCUE Reminder Screen"
+                                class="absolute inset-0 w-full h-full object-cover rounded-[1.7rem] p-1.5">
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white text-center">
+                                <h3 class="font-bold text-lg" data-lang-key="screenshot2Title">Smart Reminders</h3>
+                                <p class="text-sm opacity-90" data-lang-key="screenshot2Desc">Never miss a dose</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 1: AI Scanner -->
+                    <div class="flex-shrink-0 snap-center animate-on-scroll">
+                        <div
+                            class="relative w-60 h-[520px] bg-gray-900 rounded-3xl shadow-2xl border-4 border-gray-800 overflow-hidden mx-auto">
+                            <div
+                                class="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-5 bg-gray-900 rounded-b-xl z-10">
+                            </div>
+                            <img src="image/9.png" alt="MEDCUE Scan Screen"
+                                class="absolute left-1/2 top-1/2 w-full h-[52%] transform -translate-x-1/2 -translate-y-1/2 object-cover rounded-[1.7rem] p-1.5" />
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white text-center">
+                                <h3 class="font-bold text-lg" data-lang-key="screenshot1Title">AI Scanner</h3>
+                                <p class="text-sm opacity-90" data-lang-key="screenshot1Desc">Smart prescription
+                                    detection</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 3: Medicine Info -->
+                    <div class="flex-shrink-0 snap-center animate-on-scroll">
+                        <div
+                            class="relative w-60 h-[520px] bg-gray-900 rounded-3xl shadow-2xl border-4 border-gray-800 overflow-hidden mx-auto flex items-center justify-center">
+                            <div
+                                class="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-5 bg-gray-900 rounded-b-xl z-10">
+                            </div>
+                            <img src="image/4.jpg" alt="MEDCUE Medicine Info Screen"
+                                class="absolute inset-0 w-full h-full object-cover rounded-[1.7rem] p-1.5">
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white text-center">
+                                <h3 class="font-bold text-lg" data-lang-key="screenshot3Title">Medicine Info</h3>
+                                <p class="text-sm opacity-90" data-lang-key="screenshot3Desc">Comprehensive details</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 4: Family Health -->
+                    <div class="flex-shrink-0 snap-center animate-on-scroll">
+                        <div
+                            class="relative w-60 h-[520px] bg-gray-900 rounded-3xl shadow-2xl border-4 border-gray-800 overflow-hidden mx-auto flex items-center justify-center">
+                            <div
+                                class="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-5 bg-gray-900 rounded-b-xl z-10">
+                            </div>
+                            <img src="image/5.jpg" alt="MEDCUE Family Health Screen"
+                                class="absolute inset-0 w-full h-full object-cover rounded-[1.7rem] p-1.5">
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white text-center">
+                                <h3 class="font-bold text-lg" data-lang-key="screenshot4Title">Family Health</h3>
+                                <p class="text-sm opacity-90" data-lang-key="screenshot4Desc">Manage everyone's meds</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 5: Offline Access -->
+                    <div class="flex-shrink-0 snap-center animate-on-scroll">
+                        <div
+                            class="relative w-60 h-[520px] bg-gray-900 rounded-3xl shadow-2xl border-4 border-gray-800 overflow-hidden mx-auto">
+                            <div
+                                class="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-5 bg-gray-900 rounded-b-xl z-10">
+                            </div>
+                            <img src="image/8.png" alt="MEDCUE Offline Access Screen"
+                                class="absolute left-1/2 top-1/2 w-full h-[55%] transform -translate-x-1/2 -translate-y-1/2 object-cover rounded-[1.7rem] p-1.5" />
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white text-center">
+                                <h3 class="font-bold text-lg" data-lang-key="screenshot5Title">Offline Access</h3>
+                                <p class="text-sm opacity-90" data-lang-key="screenshot5Desc">Works without internet</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 7. Enhanced Testimonials Section -->
+        <section id="testimonials" class="section-bg-white py-20 md:py-32 px-6 md:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-on-scroll"
+                        data-lang-key="testimonialsTitle">
+                        What Our Users Say
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll"
+                        data-lang-key="testimonialsSubtitle">
+                        Real stories from real users who have transformed their medication management
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="testimonial-card p-8 rounded-2xl animate-on-scroll">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">Rafiq Hasan</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            "In today’s complex healthcare world, MEDCUE brings peace of mind. It makes storing and
+                            tracking prescriptions effortless. A game-changer!"
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card p-8 rounded-2xl animate-on-scroll">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">Nadia Sultana</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            "MEDCUE is an amazing health app! Prescription scanning is fast and accurate. I'm also
+                            grateful for its helpful suggestions and clean UI."
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card p-8 rounded-2xl animate-on-scroll">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">Tanvir Alam</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            "I used to Google medicine names after every prescription. MEDCUE changed that completely.
+                            Now I know what I’m taking and why."
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card p-8 rounded-2xl animate-on-scroll">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">Sadia Noor</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            "The AI guidance is smart and reliable. Prescription scanning and reminders work great. I
+                            love how intuitive the experience is."
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card p-8 rounded-2xl animate-on-scroll">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">Jahidul Islam</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            "I’m really impressed with this app. First time using something like this and it’s so
+                            polished, useful, and easy to use. Kudos to the team!"
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card p-8 rounded-2xl animate-on-scroll">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">Imran Kabir</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            "Really smooth and easy to use. Everything loads fast and the medicine breakdowns are on
+                            point. Highly satisfied!"
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card p-8 rounded-2xl animate-on-scroll">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-800">Shafiqul Arefin</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            "It's a very good app for managing prescriptions and understanding medicine usage. Features
+                            are solid and well thought out."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 8. Enhanced About MEDCUE Section -->
+        <section id="about" class="section-bg-light py-20 md:py-32 px-6 md:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-on-scroll"
+                        data-lang-key="aboutTitle">
+                        About MEDCUE
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-4xl mx-auto animate-on-scroll leading-relaxed"
+                        data-lang-key="aboutText">
+                        We created MEDCUE to solve the confusion and medication mismanagement people face every day.
+                        Especially for the elderly and chronic patients, our goal is to provide a reliable, easy-to-use
+                        solution that brings peace of mind and better health outcomes.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2" data-lang-key="aboutMissionTitle">Our Mission
+                        </h3>
+                        <p class="text-gray-600" data-lang-key="aboutMissionText">To simplify medication management for
+                            everyone through innovative AI technology.</p>
+                    </div>
+
+                    <div class="text-center p-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2" data-lang-key="aboutVisionTitle">Our Vision
+                        </h3>
+                        <p class="text-gray-600" data-lang-key="aboutVisionText">A world where medication management is
+                            effortless and accessible to everyone, regardless of age or technical ability.</p>
+                    </div>
+
+                    <div class="text-center p-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2" data-lang-key="aboutValuesTitle">Our Values
+                        </h3>
+                        <p class="text-gray-600" data-lang-key="aboutValuesText">Innovation, accessibility, and
+                            user-centered design drive everything we do at MEDCUE.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Enhanced Blog Preview Section -->
+        <section class="section-bg-white py-20 md:py-32 px-6 md:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6 animate-on-scroll"
+                        data-lang-key="blogTitle">
+                        Latest Health Insights
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll" data-lang-key="blogSubtitle">
+                        Stay informed with expert health tips and insights from our medical team
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Blog Post 1 -->
+                    <div class="blog-card p-6 rounded-2xl animate-on-scroll">
+                        <img src="image/blog3.jpg" alt="Managing Chronic Diseases"
+                            class="w-full h-48 object-cover rounded-xl mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3" data-lang-key="blogPost1Title">Tips for
+                            Managing Chronic Diseases</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed" data-lang-key="blogPost1Desc">
+                            Learn essential strategies to live healthier with chronic conditions and improve your
+                            quality of life.
+                        </p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+                            data-lang-key="readMore">
+                            Read More
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Blog Post 2 -->
+                    <div class="blog-card p-6 rounded-2xl animate-on-scroll">
+                        <img src="image/blog1.jpg" alt="Understanding Your Prescriptions"
+                            class="w-full h-48 object-cover rounded-xl mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3" data-lang-key="blogPost2Title">Understanding
+                            Your Prescriptions</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed" data-lang-key="blogPost2Desc">
+                            Demystifying medical jargon for better understanding of your medications and treatment
+                            plans.
+                        </p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+                            data-lang-key="readMore">
+                            Read More
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Blog Post 3 -->
+                    <div class="blog-card p-6 rounded-2xl animate-on-scroll">
+                        <img src="image/blog2.jpg" alt="Digital Health in Bangladesh"
+                            class="w-full h-48 object-cover rounded-xl mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3" data-lang-key="blogPost3Title">The Future of
+                            Digital Health in BD</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed" data-lang-key="blogPost3Desc">
+                            Exploring how technology is shaping healthcare in Bangladesh and improving patient outcomes.
+                        </p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+                            data-lang-key="readMore">
+                            Read More
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 10. Enhanced Footer -->
+    <footer id="contact" class="text-white py-16 px-6 md:px-12" style="background:#007ac2;">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left mb-12">
+                <!-- Company Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <img src="image/logo.png" alt="MEDCUE Logo" class="h-20 w-auto">
+                        <span class="text-2xl font-bold">MEDCUE</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed" data-lang-key="footerDescription">
+                        Your AI-powered health assistant, making medication management simple, accurate, and accessible
+                        for everyone in Bangladesh.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-blue-300 transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.588-1.333h2.412v-3.999h-3.257c-3.265 0-4.743 1.542-4.743 4.686v2.314z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-blue-300 transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l9 4-9 4z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-blue-300 transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.98v16h4.98v-8.257c0-3.845 4.03-3.691 4.03 0v8.257h5v-8.331c0-7.823-8.034-7.686-8.034 0v.001z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-6" data-lang-key="quickLinks">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="https://sites.google.com/view/medcue-privacy-policy/privacy-policy?authuser=2"
+                                target="_blank" rel="noopener"
+                                class="text-gray-300 hover:text-blue-300 transition duration-300"
+                                data-lang-key="privacyPolicy">Privacy Policy</a></li>
+                        <li><a href="https://sites.google.com/view/medcue-privacy-policy/terms-and-condition?authuser=2"
+                                target="_blank" rel="noopener"
+                                class="text-gray-300 hover:text-blue-300 transition duration-300"
+                                data-lang-key="termsOfService">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-blue-300 transition duration-300"
+                                data-lang-key="contact">Contact</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-blue-300 transition duration-300"
+                                data-lang-key="support">Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-6" data-lang-key="contactUs">Contact Us</h3>
+                    <div class="space-y-3">
+                        <p class="text-gray-300">
+                            <a href="mailto:support@medcue.com"
+                                class="hover:text-blue-300 transition duration-300">support@medcue.com</a>
+                        </p>
+                        <p class="text-gray-300" data-lang-key="address">Dhaka, Bangladesh</p>
+                        <p class="text-gray-300" data-lang-key="trustSeal">Powered by ATechHouse © 2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-blue-700 pt-8 text-center">
+                <p class="text-gray-400 text-sm" data-lang-key="copyright">
+                    &copy; 2025 MEDCUE. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>
