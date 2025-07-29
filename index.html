@@ -687,8 +687,80 @@
         <!-- 1. Enhanced Hero Section (New Design) -->
         <section id="hero"
             class="hero-new-bg py-20 md:py-32 px-6 md:px-12 flex flex-col lg:flex-row items-center justify-center text-center lg:text-left min-h-screen relative z-0">
-            <!-- Left Content Area -->
-            <div class="flex-1 lg:w-1/2 mb-12 lg:mb-0 lg:pr-16 relative z-10">
+            <!-- Right Phone Mockup with App Screenshot and Floating Elements (Now on Left) -->
+            <div class="flex-1 lg:w-1/2 flex justify-center items-center relative z-10 hero-visual lg:order-1">
+                <div
+                    class="relative hero-phone-frame w-64 md:w-72 lg:w-80 h-[560px] md:h-[600px] lg:h-[650px] rounded-[2.5rem] flex items-center justify-center phone-mockup overflow-visible">
+                    <!-- Phone Screen placeholder -->
+                    <div class="absolute inset-0.5 hero-phone-screen overflow-hidden">
+                        <img src="image\10.jpg" alt="MEDCUE App Screenshot" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Floating Notification -->
+                    <div class="absolute -top-6 -right-6 bg-blue-500 text-white px-4 py-2 rounded-xl shadow-lg floating-notification hero-floating-element"
+                        style="animation-delay: 1.2s;">
+                        <div class="flex items-center space-x-2">
+                            <!-- Bell Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.917V5a2 2 0 10-4 0v.083A6 6 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m4 0v1a3 3 0 006 0v-1m-6 0h6" />
+                            </svg>
+                            <span class="text-sm font-medium">Time for medicine!</span>
+                        </div>
+                    </div>
+
+                    <!-- Floating Price Tag -->
+                    <div class="absolute -bottom-6 -left-6 hero-floating-element" style="animation-delay: 1.5s;">
+                        <div class="bg-green-500 text-white px-4 py-2 rounded-xl shadow-lg text-center">
+                            <div class="text-sm opacity-90">Everything is</div>
+                            <div class="font-bold text-xl">FREE</div>
+                        </div>
+                    </div>
+
+
+                    <!-- AI Scan Feature -->
+                    <div class="absolute top-1/4 -left-12 bg-white p-3 rounded-xl shadow-lg border border-gray-200 hero-floating-element"
+                        style="animation-delay: 0.8s;">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <!-- Check Circle Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium text-gray-800">AI Scan</div>
+                                <div class="text-xs text-gray-500">99% Accurate</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Family Section -->
+                    <div class="absolute bottom-1/4 -right-12 bg-white p-3 rounded-xl shadow-lg border border-gray-200 hero-floating-element"
+                        style="animation-delay: 1s;">
+                        <div class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="7" r="4" />
+                                <path d="M5.5 21a6.5 6.5 0 0113 0" />
+                            </svg>
+
+                            <div>
+                                <div class="text-sm font-medium text-gray-800">Family</div>
+                                <div class="text-xs text-gray-500">5 Members</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Left Content Area (Now on Right) -->
+            <div class="flex-1 lg:w-1/2 mb-12 lg:mb-0 lg:pr-16 relative z-10 lg:order-2">
                 <!-- Badge -->
                 <div
                     class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6 animate-on-scroll">
@@ -758,7 +830,7 @@
                     </a>
 
                     <!-- App Store Badge (Coming Soon) -->
-                    <div class="flex flex-col items-center  cursor-not-allowed pointer-events-none">
+                    <div class="flex flex-col items-center opacity-50 cursor-not-allowed pointer-events-none">
                         <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
                             alt="Download on the App Store" class="h-14 md:h-15 w-auto" />
                         <span class="mt-2 text-sm text-gray-600 font-medium" data-lang-key="appStoreSoon">Coming
@@ -766,80 +838,8 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Right Phone Mockup with App Screenshot and Floating Elements -->
-            <div class="flex-1 lg:w-1/2 flex justify-center items-center relative z-10 hero-visual">
-                <div
-                    class="relative hero-phone-frame w-64 md:w-72 lg:w-80 h-[560px] md:h-[600px] lg:h-[650px] rounded-[2.5rem] flex items-center justify-center phone-mockup">
-                    <!-- Phone Screen placeholder -->
-                    <div class="absolute inset-0.5 hero-phone-screen overflow-hidden">
-                        <img src="image/10.jpg" alt="MEDCUE App Screenshot" class="w-full h-full object-cover">
-                    </div>
-
-                    <!-- Floating Notification -->
-                    <div class="absolute -top-6 -right-6 bg-blue-500 text-white px-4 py-2 rounded-xl shadow-lg floating-notification hero-floating-element"
-                        style="animation-delay: 1.2s;">
-                        <div class="flex items-center space-x-2">
-                            <!-- Bell Icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.917V5a2 2 0 10-4 0v.083A6 6 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m4 0v1a3 3 0 006 0v-1m-6 0h6" />
-                            </svg>
-                            <span class="text-sm font-medium">Time for medicine!</span>
-                        </div>
-                    </div>
-
-                    <!-- Floating Price Tag -->
-                    <div class="absolute -bottom-6 -left-6 hero-floating-element" style="animation-delay: 1.5s;">
-                        <div class="bg-green-500 text-white px-4 py-2 rounded-xl shadow-lg text-center">
-                            <div class="text-sm opacity-90">Everything is</div>
-                            <div class="font-bold text-xl">FREE</div>
-                        </div>
-                    </div>
-
-
-                    <!-- AI Scan Feature -->
-                    <div class="absolute top-1/4 -left-12 bg-white p-3 rounded-xl shadow-lg border border-gray-200 hero-floating-element"
-                        style="animation-delay: 0.8s;">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                <!-- Check Circle Icon -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="text-sm font-medium text-gray-800">AI Scan</div>
-                                <div class="text-xs text-gray-500">99% Accurate</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Family Section -->
-                    <div class="absolute bottom-1/4 -right-12 bg-white p-3 rounded-xl shadow-lg border border-gray-200 hero-floating-element"
-                        style="animation-delay: 1s;">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                <!-- User Group Icon -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 20h5v-2a4 4 0 00-5-3.87M9 20H4v-2a4 4 0 015-3.87m8-4a4 4 0 11-8 0 4 4 0 018 0z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="text-sm font-medium text-gray-800">Family</div>
-                                <div class="text-xs text-gray-500">5 Members</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </section>
+
         <!-- 2. Enhanced Features Grid -->
         <section id="features" class="section-bg-light py-20 md:py-32 px-6 md:px-12">
             <div class="max-w-6xl mx-auto">
@@ -891,16 +891,25 @@
                     <!-- Feature Card 3: Offline Support -->
                     <div class="feature-card p-8 rounded-2xl text-center animate-on-scroll">
                         <div class="feature-icon text-6xl mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="mx-auto">
-                                <path d="M12 20h.01" />
-                                <path d="M2 8.82a15 15 0 0 1 4.7-3.65" />
-                                <path d="M17.3 5.17A15 15 0 0 1 22 8.82" />
-                                <line x1="2" y1="2" x2="22" y2="22" />
-                                <path d="M8.5 12.118a5.29 5.29 0 0 1 2.887-2.887" />
-                                <path d="M15.5 12.118a5.29 5.29 0 0 0-2.887-2.887" />
-                            </svg>
+                           <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" 
+     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto">
+  
+  <!-- Largest WiFi arc -->
+  <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+  
+  <!-- Medium WiFi arc -->
+  <path d="M4.22 12.7a10 10 0 0 1 15.56 0" />
+  
+  <!-- Small WiFi arc -->
+  <path d="M8.53 16.11a4 4 0 0 1 6.94 0" />
+  
+  <!-- Dot -->
+  <path d="M12 20h.01" />
+  
+  <!-- Diagonal slash line -->
+  <line x1="2" y1="2" x2="22" y2="22" />
+</svg>
+
                         </div>
                         <h3 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="feature3Title">Offline Support
                         </h3>
@@ -953,7 +962,7 @@
                                 <path d="M16 16c0 1.1.9 2 2 2h1a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v2z" />
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="feature6Title">AI Medicine Info
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4" data-lang-key="feature6Title">Medicine Info
                         </h3>
                         <p class="text-gray-600 leading-relaxed" data-lang-key="feature6Desc">Tap any medicine to get
                             comprehensive information about usage, side effects, and precautions.</p>
