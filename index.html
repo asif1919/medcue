@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEDCUE: Scan RX & Manage Meds - Your AI Health Assistant</title>
+    <title>MEDCUE</title>
     <meta name="description"
         content="MEDCUE: Scan prescriptions, manage meds, get local prices, and organize family health records. Your AI Health Assistant built for Everyone.">
     <meta name="keywords"
         content="MEDCUE, health app, medicine management, prescription scanner, AI health, Bangladesh, pill reminder, family health, medicine prices">
 
     <!-- Favicon -->
-    <link rel="icon" href="https://placehold.co/32x32/2C3E50/FFFFFF?text=MC" type="image/x-icon">
+    <link rel="icon" href="image\logo.png" type="image/x-icon">
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -536,6 +536,50 @@
             font-weight: bold;
             box-shadow: 0 4px 12px rgba(0, 122, 194, 0.3);
         }
+
+        /* New Hero Section Specific Styles */
+        .hero-new-bg {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-new-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23e0f7fa"/><stop offset="100%" stop-color="%23b2ebf2"/></linearGradient></defs><g fill="url(%23g)"><circle cx="20" cy="20" r="15" opacity="0.1"/><circle cx="80" cy="40" r="20" opacity="0.1"/><circle cx="50" cy="80" r="18" opacity="0.1"/><path d="M10 50 Q 30 30, 50 50 T 90 50" stroke="%2380deea" stroke-width="0.5" fill="none" opacity="0.2"/><path d="M0 70 Q 25 55, 50 70 T 100 70" stroke="%234dd0e1" stroke-width="0.5" fill="none" opacity="0.2"/></g></svg>') center center / cover no-repeat;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-phone-frame {
+            border: 8px solid #334155;
+            /* Darker border for contrast */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            background-color: #0F172A;
+            /* Dark background for phone */
+        }
+
+        .hero-phone-screen {
+            border-radius: 1.5rem;
+            /* Slightly smaller border-radius for inner screen */
+        }
+
+        .hero-floating-element {
+            transition: all 0.5s ease-in-out;
+            animation: fadeInUp 0.8s ease-out forwards;
+            /* Use fadeInUp for initial appearance */
+        }
+
+        .hero-floating-element:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 
@@ -546,7 +590,7 @@
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <!-- Logo and Brand -->
             <div class="flex items-center space-x-3">
-                <img src="image/logo.png" alt="MEDCUE Logo" class="h-10 w-auto">
+                <img src="image\logo.png" alt="MEDCUE Logo" class="h-10 w-auto">
                 <div class="hidden sm:block">
                     <span class="text-xl font-bold text-deep-blue" data-lang-key="appName">MEDCUE</span>
                     <p class="text-xs text-gray-500" data-lang-key="appTagline">AI Health Assistant</p>
@@ -640,35 +684,11 @@
     </header>
 
     <main>
-        <!-- 1. Enhanced Hero Section -->
+        <!-- 1. Enhanced Hero Section (New Design) -->
         <section id="hero"
-            class="hero-bg py-20 md:py-32 px-6 md:px-12 flex flex-col lg:flex-row items-center justify-center text-center lg:text-left min-h-screen relative overflow-hidden">
-            <!-- Floating Background Shapes -->
-            <div class="floating-shapes">
-                <div class="floating-shape">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#27AE60" stroke-width="1">
-                        <circle cx="12" cy="12" r="10" />
-                    </svg>
-                </div>
-                <div class="floating-shape">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2C3E50" stroke-width="1">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                    </svg>
-                </div>
-                <div class="floating-shape">
-                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#27AE60" stroke-width="1">
-                        <polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5" />
-                    </svg>
-                </div>
-                <div class="floating-shape">
-                    <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#2C3E50" stroke-width="1">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                    </svg>
-                </div>
-            </div>
-
-            <!-- Left Content with Added Padding -->
-            <div class="flex-1 pl-6 lg:pl-16 lg:w-5/12 mb-12 lg:mb-0 lg:pr-16 hero-content relative z-10">
+            class="hero-new-bg py-20 md:py-32 px-6 md:px-12 flex flex-col lg:flex-row items-center justify-center text-center lg:text-left min-h-screen relative z-0">
+            <!-- Left Content Area -->
+            <div class="flex-1 lg:w-1/2 mb-12 lg:mb-0 lg:pr-16 relative z-10">
                 <!-- Badge -->
                 <div
                     class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6 animate-on-scroll">
@@ -676,17 +696,25 @@
                     <span data-lang-key="newFeature">✨ New AI-Powered Features</span>
                 </div>
 
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 hero-title">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-4 hero-title animate-on-scroll"
+                    style="animation-delay: 0.2s;">
                     <span class="gradient-text" data-lang-key="heroTitle">MEDCUE</span>
+                    <br class="hidden lg:block">
+                    <span class="text-gray-800 text-2xl md:text-3xl lg:text-4xl font-semibold"
+                        data-lang-key="heroSubtitle">
+                        Scan RX & Manage Meds
+                    </span>
                 </h1>
 
-                <p class="text-xl md:text-2xl text-gray-600 mb-10 hero-tagline leading-relaxed"
-                    data-lang-key="heroTagline">
+
+                <p class="text-lg md:text-xl text-gray-600 mb-8 hero-tagline leading-relaxed animate-on-scroll"
+                    style="animation-delay: 0.4s;" data-lang-key="heroTagline">
                     Your AI Health Assistant – Simplifying medication management for everyone.
                 </p>
 
-                <!-- Key Benefits -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 text-left">
+                <!-- Key Benefits Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 text-left animate-on-scroll"
+                    style="animation-delay: 0.6s;">
                     <div class="flex items-center space-x-3 text-gray-700">
                         <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                             <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
@@ -719,98 +747,99 @@
                     </div>
                 </div>
 
-                <div
-                    class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6 hero-buttons">
+                <!-- Download Buttons -->
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6 hero-buttons animate-on-scroll"
+                    style="animation-delay: 0.8s;">
                     <!-- Google Play Badge -->
                     <a href="https://play.google.com/store/apps/details?id=com.atechhouse.medcue&hl=bn" target="_blank"
                         class="transform hover:scale-105 transition duration-200 flex-shrink-0">
                         <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                            alt="Get it on Google Play" class="h-20 w-auto" />
+                            alt="Get it on Google Play" class="h-16 md:h-20 w-auto" />
                     </a>
 
                     <!-- App Store Badge (Coming Soon) -->
-                    <div class="flex flex-col items-center opacity-50 cursor-not-allowed pointer-events-none">
+                    <div class="flex flex-col items-center  cursor-not-allowed pointer-events-none">
                         <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                            alt="Download on the App Store" class="h-16 w-auto" />
-                        <span class="mt-2 text-sm text-gray-600 font-medium">Coming Soon</span>
+                            alt="Download on the App Store" class="h-14 md:h-15 w-auto" />
+                        <span class="mt-2 text-sm text-gray-600 font-medium" data-lang-key="appStoreSoon">Coming
+                            Soon</span>
                     </div>
                 </div>
             </div>
 
-           <!-- Right Phone Mockup -->
-<div class="flex-1 px-4 lg:px-0 lg:w-7/12 flex justify-center items-center hero-visual relative z-10">
-  <div class="relative">
-    <!-- Main Phone -->
-    <div
-      class="w-60 md:w-64 lg:w-72 h-[540px] flex items-center justify-center rounded-3xl shadow-2xl border-4 border-deep-blue"
-      style="background:#007ac2;"
-    >
-      <img src="image/logo.png" alt="MEDCUE Logo" class="h-28 w-28 object-contain" />
-    </div>
+            <!-- Right Phone Mockup with App Screenshot and Floating Elements -->
+            <div class="flex-1 lg:w-1/2 flex justify-center items-center relative z-10 hero-visual">
+                <div
+                    class="relative hero-phone-frame w-64 md:w-72 lg:w-80 h-[560px] md:h-[600px] lg:h-[650px] rounded-[2.5rem] flex items-center justify-center phone-mockup">
+                    <!-- Phone Screen placeholder -->
+                    <div class="absolute inset-0.5 hero-phone-screen overflow-hidden">
+                        <img src="image/10.jpg" alt="MEDCUE App Screenshot" class="w-full h-full object-cover">
+                    </div>
 
-    <!-- Floating Notification -->
-    <div
-      class="absolute -top-3 -right-3 bg-blue-500 text-white px-3 py-2 rounded-lg shadow-lg floating-notification"
-    >
-      <div class="flex items-center space-x-2">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
-          />
-        </svg>
-        <span class="text-xs font-medium">Time for medicine!</span>
-      </div>
-    </div>
+                    <!-- Floating Notification -->
+                    <div class="absolute -top-6 -right-6 bg-blue-500 text-white px-4 py-2 rounded-xl shadow-lg floating-notification hero-floating-element"
+                        style="animation-delay: 1.2s;">
+                        <div class="flex items-center space-x-2">
+                            <!-- Bell Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.917V5a2 2 0 10-4 0v.083A6 6 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m4 0v1a3 3 0 006 0v-1m-6 0h6" />
+                            </svg>
+                            <span class="text-sm font-medium">Time for medicine!</span>
+                        </div>
+                    </div>
 
-    <!-- Floating Price Tag -->
-    <div class="absolute -bottom-3 -left-3 price-tag">
-      <div class="text-center">
-        <div class="text-xs opacity-90">Price</div>
-        <div class="font-bold">FREE</div>
-      </div>
-    </div>
+                    <!-- Floating Price Tag -->
+                    <div class="absolute -bottom-6 -left-6 hero-floating-element" style="animation-delay: 1.5s;">
+                        <div class="bg-green-500 text-white px-4 py-2 rounded-xl shadow-lg text-center">
+                            <div class="text-sm opacity-90">Everything is</div>
+                            <div class="font-bold text-xl">FREE</div>
+                        </div>
+                    </div>
 
-    <!-- Secondary Floating Elements -->
-    <div
-      class="absolute top-8 -left-6 bg-white p-3 rounded-xl shadow-lg border border-gray-200 animate-on-scroll"
-      style="animation-delay: 0.5s;"
-    >
-      <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-          <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        </div>
-        <div>
-          <div class="text-xs font-medium text-deep-blue">AI Scan</div>
-          <div class="text-xs text-gray-500">99% Accurate</div>
-        </div>
-      </div>
-    </div>
 
-    <div
-      class="absolute bottom-16 -right-6 bg-white p-3 rounded-xl shadow-lg border border-gray-200 animate-on-scroll"
-      style="animation-delay: 1s;"
-    >
-      <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-          <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-            <path
-              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
-            />
-          </svg>
-        </div>
-        <div>
-          <div class="text-xs font-medium text-deep-blue">Family</div>
-          <div class="text-xs text-gray-500">5 Members</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                    <!-- AI Scan Feature -->
+                    <div class="absolute top-1/4 -left-12 bg-white p-3 rounded-xl shadow-lg border border-gray-200 hero-floating-element"
+                        style="animation-delay: 0.8s;">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <!-- Check Circle Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium text-gray-800">AI Scan</div>
+                                <div class="text-xs text-gray-500">99% Accurate</div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- Family Section -->
+                    <div class="absolute bottom-1/4 -right-12 bg-white p-3 rounded-xl shadow-lg border border-gray-200 hero-floating-element"
+                        style="animation-delay: 1s;">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <!-- User Group Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a4 4 0 00-5-3.87M9 20H4v-2a4 4 0 015-3.87m8-4a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium text-gray-800">Family</div>
+                                <div class="text-xs text-gray-500">5 Members</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </section>
-
         <!-- 2. Enhanced Features Grid -->
         <section id="features" class="section-bg-light py-20 md:py-32 px-6 md:px-12">
             <div class="max-w-6xl mx-auto">
@@ -1582,7 +1611,7 @@
                                 class="hover:text-blue-300 transition duration-300">support@medcue.com</a>
                         </p>
                         <p class="text-gray-300" data-lang-key="address">Dhaka, Bangladesh</p>
-                        <p class="text-gray-300" data-lang-key="trustSeal">Powered by ATechHouse © 2023</p>
+                        <p class="text-gray-300" data-lang-key="trustSeal">Powered by ATechHouse © 2025</p>
                     </div>
                 </div>
             </div>

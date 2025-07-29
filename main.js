@@ -18,7 +18,7 @@ const translations = {
         benefit2: "Smart Reminders",
         benefit3: "Local Prices",
         downloadPlay: "Download on Google Play",
-        appStoreSoon: "App Store – Coming Soon",
+        appStoreSoon: "– Coming Soon –",
         trust1: "Free to Download",
         trust2: "No Ads",
         trust3: "Privacy First",
@@ -122,11 +122,11 @@ const translations = {
         benefit2: "স্মার্ট রিমাইন্ডার",
         benefit3: "স্থানীয় মূল্য",
         downloadPlay: "গুগল প্লে থেকে ডাউনলোড করুন",
-        appStoreSoon: "অ্যাপ স্টোর – শীঘ্রই আসছে",
+        appStoreSoon: "শীঘ্রই আসছে",
         trust1: "বিনামূল্যে ডাউনলোড",
         trust2: "কোন বিজ্ঞাপন নেই",
         trust3: "গোপনীয়তা প্রথম",
-        featuresTitle: "আপনার হাতের মুঠোয় শক্তিশালী বৈশিষ্ট্য",
+        featuresTitle: "আপনার হাতের মুঠোয় শক্তিশালী বৈশিষ্ট্য",
         featuresSubtitle: "মেডকিউ কীভাবে অত্যাধুনিক এআই প্রযুক্তির মাধ্যমে ঔষধ ব্যবস্থাপনায় বিপ্লব ঘটায় তা আবিষ্কার করুন",
         feature1Title: "এআই আরএক্স স্ক্যানার",
         feature1Desc: "উন্নত এআই প্রযুক্তি ব্যবহার করে সহজে এবং নির্ভুলভাবে হাতে লেখা প্রেসক্রিপশন স্ক্যান করুন।",
@@ -159,7 +159,7 @@ const translations = {
         elderlyFeature3Title: "সরলীকৃত লেআউট",
         elderlyFeature3Desc: "সহজ নেভিগেশন এবং পঠনযোগ্যতার জন্য বড় বাটন এবং উচ্চ-কন্ট্রাস্ট ডিজাইন।",
         doseTimelineTitle: "সহজ ডোজ ব্যবস্থাপনা",
-        doseTimelineDesc: "প্রেসক্রিপশন থেকে আর অনুমান করার দরকার নেই। মেডকিউ স্বয়ংক্রিয়ভাবে আপনার ডোজগুলিকে স্পষ্ট, সহজে অনুসরণযোগ্য টাইমলাইনে বিভক্ত করে। শুধু অ্যাপটি খুলুন এবং আপনার ডোজ নিন।",
+        doseTimelineDesc: "No more guessing from the prescription. MEDCUE automatically separates your doses into clear, easy-to-follow timelines. Just open the app and take your dose.",
         doseMorning: "সকাল",
         doseAfternoon: "দুপুর",
         doseNight: "রাত",
@@ -205,7 +205,7 @@ const translations = {
         support: "সহায়তা",
         contactUs: "যোগাযোগ করুন",
         address: "ঢাকা, বাংলাদেশ",
-        trustSeal: "এটিচহাউস © 2023 দ্বারা চালিত",
+        trustSeal: "Powered by ATechHouse © 2023",
         copyright: "&copy; 2025 মেডকিউ। সর্বস্বত্ব সংরক্ষিত।"
     }
 };
@@ -231,12 +231,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile menu functionality
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    
+
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-        
+
         // Close mobile menu when clicking on a link
         const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         mobileMenuLinks.forEach(link => {
@@ -245,22 +245,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    
+
     // Smooth scrolling for navigation links with header offset
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
-            
+
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 const header = document.querySelector('header');
                 const headerHeight = header ? header.offsetHeight : 0;
                 const targetPosition = targetSection.offsetTop - headerHeight - 20;
-                
+
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-    
+
     // Event listener for language toggle
     const languageToggle = document.getElementById('languageToggle');
     if (languageToggle) {
